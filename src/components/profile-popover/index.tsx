@@ -1,14 +1,18 @@
 import { Popover, Typography, IconButton, Button } from "@mui/material";
 import { Person } from "@mui/icons-material";
 import { useState } from "react";
+import { useAuthContext } from "../../hooks/use-auth-context";
+import { useNavigate } from "react-router-dom";
 
 const ProfilePopover = () => {
   const [anchorEl, setAnchorEl] = useState<HTMLButtonElement | null>(null);
+  const { handleLogout, user } = useAuthContext();
+  const navigate = useNavigate();
 
-  const handleLogout = () => {
-    //TODO:  to get from auth
+  const onLogout = () => {
+    handleLogout();
+    navigate("/");
   };
-  const user = "Kamila"; //TODO: to get from auth
 
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) =>
     setAnchorEl(event.currentTarget);
@@ -34,8 +38,8 @@ const ProfilePopover = () => {
           horizontal: "left",
         }}
       >
-        <Typography sx={{ p: 1.5 }}>Olá {user}</Typography>
-        <Button onClick={handleLogout} fullWidth>
+        <Typography sx={{ p: 1.5 }}>Olá {user?.name}</Typography>
+        <Button onClick={onLogout} fullWidth>
           Logout
         </Button>
       </Popover>

@@ -29,15 +29,19 @@ const persistUser = (user: UserType) => {
   localStorage.setItem("user.section", JSON.stringify(user));
 };
 
+const removePersistedUser = () => {
+  localStorage.removeItem("user.section");
+};
+
 const getPersistedUser = () => {
-  if (localStorage.getItem("user.section"))
-    return JSON.parse(localStorage.getItem("user.section") as never)?.name || "";
+  const persisted = localStorage.getItem("user.section");
+  return persisted ? (JSON.parse(persisted) as UserType) : null;
 };
 
 const AuthContext = createContext<AuthContextProps>(defaultValues);
 
 const AuthContextProvider: FC<{ children: ReactNode }> = ({ children }) => {
-  const [user, setUser] = useState<UserType | null>(null);
+  const [user, setUser] = useState<UserType | null>(getPersistedUser());
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
@@ -48,25 +52,31 @@ const AuthContextProvider: FC<{ children: ReactNode }> = ({ children }) => {
 
   const handleLogin = (email: string, password: string) => {
     console.log("login", email, password);
-    console.log("error", error);
+
+    console.log("email e senha corretos =>>>");
+
     const loggedUser = { id: "1234", name: "kamila", token: "123456" };
+
+    removePersistedUser();
+    persistUser(loggedUser);
     setUser(loggedUser);
-    const persisted = getPersistedUser();
-    if (persisted && persisted === loggedUser.name) {
-      persistUser(loggedUser);
-    }
   };
 
   const handleRegister = (email: string, name: string, password: string) => {
     console.log("register", email, password, name);
-    console.log("error", error);
-    const registeredUser = { id: "1234", name: "kamila", token: "123456" };
-    setUser(registeredUser); //"test@gmail.com");
+
+    console.log("dados estão corretos =>>>");
+
+    const registeredUser = { id: "1234", name, token: "123456" };
+
+    removePersistedUser();
+    setUser(registeredUser);
     persistUser(registeredUser);
   };
 
   const handleLogout = () => {
-    console.log("logout");
+    removePersistedUser();
+    setUser(null);
   };
 
   const value = {
