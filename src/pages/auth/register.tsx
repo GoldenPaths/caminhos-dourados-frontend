@@ -1,10 +1,13 @@
 import { FormEvent } from "react";
+import { useNavigate } from "react-router-dom";
+import { RoleEnum } from "../../contexts/auth";
 import { useAuthContext } from "../../hooks/use-auth-context";
 import { validateEmail } from "../../utils";
 import AuthContent from "./auth";
 
 const RegisterPage = () => {
   const { handleRegister, setError } = useAuthContext();
+  const navigate = useNavigate();
 
   const handleSubmit = (event: FormEvent) => {
     event.preventDefault();
@@ -21,7 +24,12 @@ const RegisterPage = () => {
 
     if (password !== confirmPassword) return setError("Senhas não conferem");
 
-    if (name && email && password) return handleRegister(email, name, password);
+    if (name && email && password) {
+      const registeredUser = handleRegister(email, name, password);
+
+      registeredUser &&
+        navigate(registeredUser.role === RoleEnum.USER ? "/queue/service" : "/queue");
+    }
   };
 
   return <AuthContent handleSubmit={handleSubmit} isRegistration />;

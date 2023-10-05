@@ -50,7 +50,7 @@ const ServiceCategories = ({ setCreateStep }: ServiceInfoFormProps) => {
 
   return (
     <>
-      <FormControlWrapper>
+      <FormControlWrapper hideGap>
         {[...serviceCategories].map(({ id, label, checked, ...rest }) => (
           <Fragment key={id}>
             <Checkbox

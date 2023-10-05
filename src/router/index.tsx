@@ -1,4 +1,5 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { RoleEnum } from "../contexts/auth";
 import { useAuthContext } from "../hooks/use-auth-context";
 
 import {
@@ -12,7 +13,8 @@ import {
 import { PrivateRoute } from "./private";
 
 const Router = () => {
-  const { isAuthenticated } = useAuthContext();
+  const { isAuthenticated, user } = useAuthContext();
+
   return (
     <BrowserRouter>
       <Routes>
@@ -22,7 +24,11 @@ const Router = () => {
         <Route
           path="/queue"
           element={
-            <PrivateRoute isAuthenticated={isAuthenticated}>
+            <PrivateRoute
+              userRole={user?.role}
+              isAuthenticated={isAuthenticated}
+              authorizedRoles={[RoleEnum.ANALYST, RoleEnum.ADMIN]}
+            >
               <ServiceQueuePage />
             </PrivateRoute>
           }
@@ -30,7 +36,11 @@ const Router = () => {
         <Route
           path="/queue/service"
           element={
-            <PrivateRoute isAuthenticated={isAuthenticated}>
+            <PrivateRoute
+              userRole={user?.role}
+              isAuthenticated={isAuthenticated}
+              authorizedRoles={[RoleEnum.ADMIN, RoleEnum.USER]}
+            >
               <CreateServicePage />
             </PrivateRoute>
           }
@@ -38,7 +48,11 @@ const Router = () => {
         <Route
           path="/queue/service/:id"
           element={
-            <PrivateRoute isAuthenticated={isAuthenticated}>
+            <PrivateRoute
+              userRole={user?.role}
+              isAuthenticated={isAuthenticated}
+              authorizedRoles={[RoleEnum.ANALYST, RoleEnum.ADMIN, RoleEnum.USER]}
+            >
               <ViewServicePage />
             </PrivateRoute>
           }

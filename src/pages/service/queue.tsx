@@ -22,7 +22,7 @@ const ServiceQueuePage = () => {
         Acompanhe o que <br />
         está acontecendo
       </Typography>
-      <FormControlWrapper>
+      <FormControlWrapper centralize>
         <Input
           onInput={handleSearchLocation}
           placeholder="Pesquise a região..."

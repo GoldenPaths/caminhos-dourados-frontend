@@ -1,27 +1,34 @@
 import { createContext, FC, ReactNode, useState, useEffect } from "react";
 import { toast } from "react-toastify";
 
+export enum RoleEnum {
+  ADMIN = "admin",
+  USER = "user",
+  ANALYST = "analyst",
+}
+
 type UserType = {
   id: string;
   name: string;
   token: string;
+  role: RoleEnum;
 };
 
 type AuthContextProps = {
   isAuthenticated: boolean;
   user: UserType | null;
-  handleLogin: (email: string, password: string) => void;
+  handleLogin: (email: string, password: string) => UserType | null;
   handleLogout: () => void;
-  handleRegister: (email: string, name: string, password: string) => void;
+  handleRegister: (email: string, name: string, password: string) => UserType | null;
   setError: (message: string | null) => void;
 };
 
 const defaultValues = {
   isAuthenticated: false,
   user: null,
-  handleLogin: () => {},
+  handleLogin: () => null,
   handleLogout: () => {},
-  handleRegister: () => {},
+  handleRegister: () => null,
   setError: () => {},
 };
 
@@ -51,15 +58,22 @@ const AuthContextProvider: FC<{ children: ReactNode }> = ({ children }) => {
   }, [error]);
 
   const handleLogin = (email: string, password: string) => {
-    console.log("login", email, password);
+    const userEmail = "admin@admin.com"; // TODO
+    const userPassword = "123456"; // TODO
 
-    console.log("email e senha corretos =>>>");
+    // TODO verificar pelo token recebido
+    if (userEmail !== email || userPassword !== password) {
+      setError("E-mail e/ou senha inválidos");
+      return null;
+    }
 
-    const loggedUser = { id: "1234", name: "kamila", token: "123456" };
+    const loggedUser = { id: "1234", name: "kamila", token: "123456", role: RoleEnum.USER };
 
     removePersistedUser();
     persistUser(loggedUser);
     setUser(loggedUser);
+
+    return loggedUser;
   };
 
   const handleRegister = (email: string, name: string, password: string) => {
@@ -67,11 +81,13 @@ const AuthContextProvider: FC<{ children: ReactNode }> = ({ children }) => {
 
     console.log("dados estão corretos =>>>");
 
-    const registeredUser = { id: "1234", name, token: "123456" };
+    const registeredUser = { id: "1234", name, token: "123456", role: RoleEnum.ANALYST };
 
     removePersistedUser();
     setUser(registeredUser);
     persistUser(registeredUser);
+
+    return registeredUser;
   };
 
   const handleLogout = () => {

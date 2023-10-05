@@ -1,10 +1,13 @@
 import { FormEvent } from "react";
+import { useNavigate } from "react-router-dom";
+import { RoleEnum } from "../../contexts/auth";
 import { useAuthContext } from "../../hooks/use-auth-context";
 import { validateEmail } from "../../utils";
 import AuthContent from "./auth";
 
 const LoginPage = () => {
   const { handleLogin, setError } = useAuthContext();
+  const navigate = useNavigate();
 
   const handleSubmit = (event: FormEvent) => {
     event.preventDefault();
@@ -17,7 +20,11 @@ const LoginPage = () => {
 
     const password = formData.get("password")?.toString();
 
-    if (email && password) return handleLogin(email, password);
+    if (email && password) {
+      const loggedUser = handleLogin(email, password);
+
+      loggedUser && navigate(loggedUser.role === RoleEnum.USER ? "/queue/service" : "/queue");
+    }
   };
 
   return <AuthContent handleSubmit={handleSubmit} />;
