@@ -8,7 +8,7 @@ export const vitePWAManifest: Partial<VitePWAOptions> = {
     name: "Caminhos Dourados",
     short_name: "Caminhos Dourados",
     description:
-      "A Plataforma que visa criar um ambiente de participação cidadã e colaboração ativa entre os moradores de comunidades e pessoas e/ou organizações interessadas.",
+      "A Plataforma visa ser um facilitador inovador de parceria com a Passos Mágicos para criar um ambiente de participação cidadã e colaboração ativa entre os moradores de comunidades e apoiar pequenas empresas locais",
     icons: [
       { src: "/android-chrome-192x192.png", sizes: "192x192", type: "image/png" },
       { src: "/android-chrome-512x512.png", sizes: "512x512", type: "image/png" },

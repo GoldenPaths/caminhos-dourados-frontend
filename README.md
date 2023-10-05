@@ -1,6 +1,6 @@
 # Caminhos Dourados Front-end
 
-A Plataforma que visa criar um ambiente de participação cidadã e colaboração ativa entre os moradores de comunidades e pessoas e/ou organizações interessadas.
+A Plataforma visa ser um facilitador inovador de parceria com a Passos Mágicos para criar um ambiente de participação cidadã e colaboração ativa entre os moradores de comunidades e apoiar pequenas empresas locais.
 
 ## Sobre a aplicação
 
