@@ -13,7 +13,7 @@ function App() {
         <CssBaseline />
         <Router />
       </ThemeProvider>
-      <ToastContainer />
+      <ToastContainer theme="dark" />
     </AuthContextProvider>
   );
 }

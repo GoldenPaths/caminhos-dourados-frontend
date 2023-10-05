@@ -1,5 +1,6 @@
-import { createContext, FC, ReactNode, useState, useEffect } from "react";
+import { createContext, FC, ReactNode, useState } from "react";
 import { toast } from "react-toastify";
+import { getUserAdmin } from "../service/api";
 
 export enum RoleEnum {
   ADMIN = "admin",
@@ -7,7 +8,7 @@ export enum RoleEnum {
   ANALYST = "analyst",
 }
 
-type UserType = {
+export type UserType = {
   id: string;
   name: string;
   token: string;
@@ -20,7 +21,6 @@ type AuthContextProps = {
   handleLogin: (email: string, password: string) => UserType | null;
   handleLogout: () => void;
   handleRegister: (email: string, name: string, password: string) => UserType | null;
-  setError: (message: string | null) => void;
 };
 
 const defaultValues = {
@@ -29,7 +29,6 @@ const defaultValues = {
   handleLogin: () => null,
   handleLogout: () => {},
   handleRegister: () => null,
-  setError: () => {},
 };
 
 const persistUser = (user: UserType) => {
@@ -49,25 +48,17 @@ const AuthContext = createContext<AuthContextProps>(defaultValues);
 
 const AuthContextProvider: FC<{ children: ReactNode }> = ({ children }) => {
   const [user, setUser] = useState<UserType | null>(getPersistedUser());
-  const [error, setError] = useState<string | null>(null);
-
-  useEffect(() => {
-    if (error) {
-      toast(error, { type: "error" });
-    }
-  }, [error]);
 
   const handleLogin = (email: string, password: string) => {
-    const userEmail = "admin@admin.com"; // TODO
-    const userPassword = "123456"; // TODO
+    const userAdmin = getUserAdmin(email, password);
 
     // TODO verificar pelo token recebido
-    if (userEmail !== email || userPassword !== password) {
-      setError("E-mail e/ou senha inválidos");
+    if (!userAdmin) {
+      toast("E-mail e/ou senha inválidos", { type: "error" });
       return null;
     }
 
-    const loggedUser = { id: "1234", name: "kamila", token: "123456", role: RoleEnum.USER };
+    const loggedUser = userAdmin; // TODO pegar usuário recebido
 
     removePersistedUser();
     persistUser(loggedUser);
@@ -77,11 +68,15 @@ const AuthContextProvider: FC<{ children: ReactNode }> = ({ children }) => {
   };
 
   const handleRegister = (email: string, name: string, password: string) => {
-    console.log("register", email, password, name);
+    const userAdmin = getUserAdmin(email, password);
 
-    console.log("dados estão corretos =>>>");
+    // TODO verificar status recebido
+    if (!userAdmin) {
+      toast("Não foi possível realizar o seu cadastro no momento", { type: "error" });
+      return null;
+    }
 
-    const registeredUser = { id: "1234", name, token: "123456", role: RoleEnum.ANALYST };
+    const registeredUser = { ...userAdmin, name };
 
     removePersistedUser();
     setUser(registeredUser);
@@ -93,6 +88,7 @@ const AuthContextProvider: FC<{ children: ReactNode }> = ({ children }) => {
   const handleLogout = () => {
     removePersistedUser();
     setUser(null);
+    toast("Deslogado com sucesso", { type: "success" });
   };
 
   const value = {
@@ -101,7 +97,6 @@ const AuthContextProvider: FC<{ children: ReactNode }> = ({ children }) => {
     handleLogin,
     handleLogout,
     handleRegister,
-    setError,
   };
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
