@@ -15,7 +15,7 @@ const HomePage = () => {
         </Typography>
         <Typography fontWeight={700} variant="h1" fontSize={24} align="center">
           caminhos{" "}
-          <Typography fontWeight={700} variant="span" color="primary" align="center">
+          <Typography fontWeight={700} variant="body1" color="primary" align="center">
             dourados
           </Typography>
         </Typography>
@@ -27,7 +27,7 @@ const HomePage = () => {
             Fazer login
           </Button>
         </Link>
-        <Typography fontWeight={700} variant="span">
+        <Typography fontWeight={700} variant="body1">
           ou
         </Typography>
         <Link to="/register">

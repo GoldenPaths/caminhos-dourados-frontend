@@ -29,7 +29,7 @@ const MenuContent = ({ toggleMenu }: MenuContentProps) => {
         <LogoImage maxWidth={4} />
         <Typography fontWeight={700}>
           caminhos{" "}
-          <Typography fontWeight={700} variant="span" color="primary">
+          <Typography fontWeight={700} variant="body1" color="primary">
             dourados
           </Typography>
         </Typography>
