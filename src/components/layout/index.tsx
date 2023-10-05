@@ -10,7 +10,9 @@ const Layout = ({ children, ...props }: LayoutProps) => {
   return (
     <>
       <TopBar />
-      <Container {...props}>{children}</Container>
+      <Container {...props} sx={{ margin: "32px auto" }}>
+        {children}
+      </Container>
     </>
   );
 };

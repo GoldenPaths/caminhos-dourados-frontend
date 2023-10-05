@@ -3,15 +3,15 @@ import { KeyboardArrowDown } from "@mui/icons-material";
 import Input from "./input";
 import { ChangeEvent, useState } from "react";
 
-type Option = {
-  value: string;
+export type OptionType = {
+  value: string | number;
   label: string;
 };
 
 interface SelectProps {
   placeholder: string;
-  options: Array<Option>;
-  onSelectOption?: (selectedOption?: Option) => void;
+  options: Array<OptionType>;
+  onSelectOption?: (selectedOption?: OptionType) => void;
 }
 
 const Select = ({

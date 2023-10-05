@@ -40,6 +40,8 @@ export const InputBase = styled(TextField)<TextFieldProps>(
     },
     ".MuiInputBase-input": {
       padding: `${theme.spacing(1.5)} ${theme.spacing(2)}`,
+      "&::-webkit-inner-spin-button": { display: "none", WebkitAppearance: "none" },
+      "&::-webkit-calendar-picker-indicator": { display: "none", WebkitAppearance: "none" },
     },
     ".MuiInputAdornment-root": {
       color: theme.palette.text.disabled,
@@ -50,7 +52,7 @@ export const InputBase = styled(TextField)<TextFieldProps>(
     ".MuiSelect-icon": {
       display: "none",
     },
-    ...(type === "file"
+    ...(type === "file" || type === "button"
       ? {
           "&::after": {
             content: `"${placeholder}"`,
@@ -58,7 +60,7 @@ export const InputBase = styled(TextField)<TextFieldProps>(
             top: "50%",
             transform: "translateY(-50%)",
             paddingLeft: theme.spacing(2),
-            color: theme.palette.text.disabled,
+            color: theme.palette.text[!value ? "disabled" : "primary"],
             zIndex: 0,
           },
           ".MuiFilledInput-input": {

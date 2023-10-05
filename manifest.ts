@@ -3,11 +3,12 @@ import { VitePWAOptions } from "vite-plugin-pwa";
 export const vitePWAManifest: Partial<VitePWAOptions> = {
   registerType: "autoUpdate",
   includeAssets: ["favicon.ico", "apple-touch-icon.png"],
+  devOptions: { enabled: true },
   manifest: {
     name: "Caminhos Dourados",
     short_name: "Caminhos Dourados",
     description:
-      "Plataforma que visa criar um ambiente de participação cidadã e colaboração ativa entre os moradores de comunidades e o governo municipal.",
+      "A Plataforma que visa criar um ambiente de participação cidadã e colaboração ativa entre os moradores de comunidades e pessoas e/ou organizações interessadas.",
     icons: [
       { src: "/android-chrome-192x192.png", sizes: "192x192", type: "image/png" },
       { src: "/android-chrome-512x512.png", sizes: "512x512", type: "image/png" },

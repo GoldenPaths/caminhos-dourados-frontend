@@ -1,6 +1,6 @@
-import { MailOutline, HttpsOutlined, ChevronLeft } from "@mui/icons-material";
+import { MailOutline, HttpsOutlined, ChevronLeft, AccountCircle } from "@mui/icons-material";
 import { Typography } from "@mui/material";
-import { MouseEvent } from "react";
+import { FormEvent } from "react";
 import { Link } from "react-router-dom";
 
 import { LogoImage, Button, Container, Input } from "../../components";
@@ -8,7 +8,7 @@ import { LogoImage, Button, Container, Input } from "../../components";
 import * as Styled from "./auth.styled";
 
 interface AuthContentProps {
-  handleSubmit: (event: MouseEvent<HTMLButtonElement>) => void;
+  handleSubmit: (event: FormEvent) => void;
   isRegistration: boolean;
 }
 
@@ -31,26 +31,43 @@ const AuthContent = ({ handleSubmit, isRegistration }: AuthContentProps) => {
         <Typography variant="h1" align="center" fontSize={32} fontWeight={700}>
           {isRegistration ? "Cadastre-se" : "Login"}
         </Typography>
-        <Styled.FormControlWrapper>
-          <Input startIcon={<MailOutline />} name="email" placeholder="Digite seu email" />
-          <Input
-            startIcon={<HttpsOutlined />}
-            type="password"
-            name="password"
-            placeholder={`${isRegistration ? "Crie" : "Digite"} sua senha`}
-          />
-          {isRegistration && (
+        <form onSubmit={handleSubmit}>
+          <Styled.FormControlWrapper>
+            {isRegistration && (
+              <Input
+                startIcon={<AccountCircle />}
+                name="name"
+                id="name"
+                placeholder="Digite seu nome"
+              />
+            )}
+            <Input
+              startIcon={<MailOutline />}
+              name="email"
+              id="email"
+              placeholder="Digite seu email"
+            />
             <Input
               startIcon={<HttpsOutlined />}
               type="password"
-              name="passwordRepeat"
-              placeholder="Confirme sua senha"
+              name="password"
+              id="password"
+              placeholder={`${isRegistration ? "Crie" : "Digite"} sua senha`}
             />
-          )}
-        </Styled.FormControlWrapper>
-        <Button variant="contained" fullWidth fontSize={16} maxWidth={50} onClick={handleSubmit}>
-          {isRegistration ? "Criar conta" : "Entrar"}
-        </Button>
+            {isRegistration && (
+              <Input
+                startIcon={<HttpsOutlined />}
+                type="password"
+                id="confirmPassword"
+                name="confirmPassword"
+                placeholder="Confirme sua senha"
+              />
+            )}
+          </Styled.FormControlWrapper>
+          <Button variant="contained" fullWidth fontSize={16} maxWidth={50} type="submit">
+            {isRegistration ? "Criar conta" : "Entrar"}
+          </Button>
+        </form>
       </Styled.ContentWrapper>
     </Container>
   );

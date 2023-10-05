@@ -1,27 +1,26 @@
-# React + TypeScript + Vite
+# Caminhos Dourados Front-end
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A Plataforma que visa criar um ambiente de participação cidadã e colaboração ativa entre os moradores de comunidades e pessoas e/ou organizações interessadas.
 
-Currently, two official plugins are available:
+## Sobre a aplicação
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+A aplicação foi desenvolvida em React + Typescript + Vite com Pwa, e a biblioteca Material UI para estilização e tematização da aplicação.
+Foi decidido utilizar Pwa neste MVP porque é instalável e mais leve do que aplicativos mobile, além de se adaptar a diferentes dispositivos.
 
-## Expanding the ESLint configuration
+## Como rodar a aplicação?
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+**1.** Clone este repositório com o seguinte comando:
 
-- Configure the top-level `parserOptions` property like this:
+`git@github.com:GoldenPaths/caminhos-dourados-frontend.git`
 
-```js
-   parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-   },
-```
+**2.** Você vai precisar ter o **Node.js** instalado na sua máquina.
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+> [Página do Node.js](https://nodejs.org/en/).</br>
+
+**3.** Instale as dependências do projeto com o comando:
+
+`npm install`
+
+**4.** Crie o arquivo `.env.local` (conforme o arquivo de exemplo `.env.local.exemple`), na raíz do projeto e adicione a variável de ambiente "VITE_API_URL" o valor da url local do backend (se a porta não tiver sido alterada, o valor inicial será o http://localhost:5101), em seguida inicie a aplicação com o comando:
+
+`npm run dev`
