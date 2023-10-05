@@ -2,9 +2,6 @@ import { VitePWAOptions } from "vite-plugin-pwa";
 
 export const vitePWAManifest: Partial<VitePWAOptions> = {
   registerType: "autoUpdate",
-  devOptions: {
-    enabled: true,
-  },
   includeAssets: ["favicon.ico", "apple-touch-icon.png"],
   manifest: {
     name: "Caminhos Dourados",

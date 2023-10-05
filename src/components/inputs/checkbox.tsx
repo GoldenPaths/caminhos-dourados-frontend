@@ -15,8 +15,8 @@ const Checkbox = ({ label, ...props }: CheckboxProps) => {
       control={
         <CheckBoxUi
           disableRipple
-          checkedIcon={<CheckedIcon />}
-          icon={<UncheckedIcon />}
+          checkedIcon={<UncheckedIcon />}
+          icon={<CheckedIcon />}
           {...props}
         />
       }

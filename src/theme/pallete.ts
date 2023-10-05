@@ -1,4 +1,4 @@
-export const pallet = {
+export const pallete = {
   golden: {
     300: "#DCB93D",
     400: "#EFBC13",

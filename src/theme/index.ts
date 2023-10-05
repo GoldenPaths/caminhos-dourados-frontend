@@ -1,18 +1,13 @@
 import { createTheme } from "@mui/material/styles";
-import { pallet } from "./pallet";
 
-const { golden, brown, yellow, grey, ...restPallet } = pallet;
+import globalStyles from "./global-styles";
+import { pallete } from "./pallete";
 
+const { golden, brown, yellow, grey, ...restPallete } = pallete;
 const theme = createTheme({
-  components: {
-    MuiMenu: {
-      styleOverrides: {
-        paper: { borderRadius: 0.5, background: grey[900] },
-      },
-    },
-  },
+  components: globalStyles,
   typography: {
-    fontFamily: 'Inter, "sans-serif"',
+    fontFamily: '"Inter", sans-serif',
   },
   palette: {
     primary: {
@@ -39,7 +34,7 @@ const theme = createTheme({
       default: grey[900],
     },
     grey,
-    ...restPallet,
+    ...restPallete,
   },
 });
 
