@@ -1,6 +1,6 @@
 import { styled } from "@mui/system";
-import { Button, ButtonProps } from "@mui/material";
+import { Button } from "@mui/material";
 
-export const ButtonBase = styled(Button)<ButtonProps>({
+export const ButtonBase = styled(Button)({
   textTransform: "none",
 });

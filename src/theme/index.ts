@@ -4,6 +4,13 @@ import { pallet } from "./pallet";
 const { golden, brown, yellow, grey, ...restPallet } = pallet;
 
 const theme = createTheme({
+  components: {
+    MuiMenu: {
+      styleOverrides: {
+        paper: { borderRadius: 0.5, background: grey[900] },
+      },
+    },
+  },
   typography: {
     fontFamily: 'Inter, "sans-serif"',
   },
