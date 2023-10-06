@@ -1,12 +1,16 @@
 import { Typography } from "@mui/material";
 import { useState, ChangeEvent } from "react";
 import { SERVICE_CATEGORIES } from "../../constants";
-import { Input, Layout, Select, OptionType } from "../../components";
+import { Input, Layout, Select, OptionType, Button } from "../../components";
 import { FormControlWrapper } from "./service.styled";
+import { useNavigate } from "react-router-dom";
 
 const ServiceQueuePage = () => {
   const [search, setSearch] = useState("");
+  const navigate = useNavigate();
   const categoriesOptions = SERVICE_CATEGORIES.map(({ label, id }) => ({ label, value: id }));
+
+  const handleOpenLastService = () => navigate("/queue/service/1");
 
   const handleSearchLocation = (event: ChangeEvent<HTMLInputElement>) => {
     setSearch(event.target.value);
@@ -34,6 +38,9 @@ const ServiceQueuePage = () => {
           options={categoriesOptions}
           onSelectOption={handleSelectCategory}
         />
+        <Button variant="contained" onClick={handleOpenLastService}>
+          Ver última ocorrência
+        </Button>
       </FormControlWrapper>
 
       {/* TODO: add map */}

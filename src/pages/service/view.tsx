@@ -1,5 +1,4 @@
 import { Divider, Typography, List } from "@mui/material";
-import { useParams } from "react-router-dom";
 import { Layout } from "../../components";
 import { CustomListItem } from "./service.styled";
 
@@ -13,10 +12,7 @@ const mockService = {
 };
 
 const ViewServicePage = () => {
-  const { id } = useParams();
   const { address, pictures, dateTime, categories, comment } = mockService;
-
-  console.log("ID", id);
 
   return (
     <Layout>
