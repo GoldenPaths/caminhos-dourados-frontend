@@ -27,9 +27,13 @@ const MenuContent = ({ toggleMenu }: MenuContentProps) => {
     <Box sx={{ width: 250 }} role="presentation" onClick={toggleMenu} onKeyDown={onKeyDown}>
       <Styled.LogoContainer>
         <LogoImage maxWidth={4} />
-        <Typography fontWeight={700}>
+        <Typography
+          fontWeight={700}
+          fontSize={16}
+          sx={{ display: "flex", alignItems: "center", columnGap: "6px" }}
+        >
           caminhos{" "}
-          <Typography fontWeight={700} variant="body1" color="primary">
+          <Typography fontWeight={700} variant="body1" color="primary" fontSize={16}>
             dourados
           </Typography>
         </Typography>

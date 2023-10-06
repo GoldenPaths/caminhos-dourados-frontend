@@ -13,9 +13,15 @@ const HomePage = () => {
         <Typography fontWeight={700} variant="h2" fontSize={24} align="center">
           Bem vindo(a) a{" "}
         </Typography>
-        <Typography fontWeight={700} variant="h1" fontSize={24} align="center">
+        <Typography
+          fontWeight={700}
+          variant="h1"
+          fontSize={24}
+          align="center"
+          sx={{ display: "flex", alignItems: "center", columnGap: "6px" }}
+        >
           caminhos{" "}
-          <Typography fontWeight={700} variant="body1" color="primary" align="center">
+          <Typography fontWeight={700} variant="body1" color="primary" align="center" fontSize={24}>
             dourados
           </Typography>
         </Typography>
