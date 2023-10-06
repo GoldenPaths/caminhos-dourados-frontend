@@ -1,5 +1,5 @@
 import { ChevronLeft, InsertComment, Update, Collections, LocationOn } from "@mui/icons-material";
-import { ChangeEvent, MouseEvent, useState } from "react";
+import { ChangeEvent, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button, Input } from "../../../components";
 import { FileContentType, GeolocationType } from "../../../contexts/service";
@@ -13,6 +13,7 @@ interface ServiceInfoFormProps {
 const ServiceInfoForm = ({ setCreateStep }: ServiceInfoFormProps) => {
   const [comment, setComment] = useState("");
   const [datetime, setDatetime] = useState("");
+  const [location, setLocation] = useState("");
   const [fileInput, setFileInput] = useState("");
   const [fileContent, setFileContent] = useState<FileContentType | null>(null);
   const [geolocation, setGeolocation] = useState<GeolocationType | null>(null);
@@ -33,8 +34,8 @@ const ServiceInfoForm = ({ setCreateStep }: ServiceInfoFormProps) => {
     });
   };
 
-  const handleSelectLocation = (event: MouseEvent<HTMLInputElement>) => {
-    console.log(event);
+  const handleSelectLocation = async (event: ChangeEvent<HTMLInputElement>) => {
+    setLocation(event.target.value);
     setGeolocation({ lat: "", long: "" });
   };
 
@@ -53,11 +54,11 @@ const ServiceInfoForm = ({ setCreateStep }: ServiceInfoFormProps) => {
     <>
       <FormControlWrapper>
         <Input
-          onClick={handleSelectLocation}
-          placeholder="Selecione o endereço"
-          type="button"
+          onInput={handleSelectLocation}
+          placeholder="Adicione seu endereço"
           endIcon={<LocationOn />}
-          name="geolocation"
+          name="location"
+          value={location}
         />
         <Input
           onChange={handleInputFile}

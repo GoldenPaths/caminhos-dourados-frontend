@@ -1,6 +1,6 @@
 import { createContext, FC, ReactNode, useState } from "react";
 import { toast } from "react-toastify";
-import { getUserAdmin } from "../service/api";
+import { getUserAdmin } from "../service/get-user-admin";
 
 export enum RoleEnum {
   ADMIN = "admin",
@@ -93,7 +93,7 @@ const AuthContextProvider: FC<{ children: ReactNode }> = ({ children }) => {
 
   const value = {
     isAuthenticated: !!user,
-    user: null,
+    user,
     handleLogin,
     handleLogout,
     handleRegister,

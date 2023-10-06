@@ -1,6 +1,11 @@
 import { pallete } from "./pallete";
 
 export default {
+  MuiDivider: {
+    styleOverrides: {
+      root: { background: pallete.grey[200] },
+    },
+  },
   MuiMenu: {
     styleOverrides: {
       paper: { borderRadius: 0.5, background: pallete.grey[900] },
