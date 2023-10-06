@@ -1,7 +1,7 @@
 import { Typography } from "@mui/material";
 import { useState, ChangeEvent } from "react";
 import { SERVICE_CATEGORIES } from "../../constants";
-import { Input, Layout, Select, OptionType, Button } from "../../components";
+import { Input, Layout, Select, OptionType, Button, Map } from "../../components";
 import { FormControlWrapper } from "./service.styled";
 import { useNavigate } from "react-router-dom";
 
@@ -43,7 +43,7 @@ const ServiceQueuePage = () => {
         </Button>
       </FormControlWrapper>
 
-      {/* TODO: add map */}
+      <Map />
     </Layout>
   );
 };
